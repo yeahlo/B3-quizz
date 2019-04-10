@@ -16,3 +16,20 @@ git pull upstream
 
 git checkout dev
 git merge master
+
+
+// avant de faire une PR
+sur la branche master
+
+git fetch upstream
+git merge upstream/master
+
+on revient sur sa branche de dev
+git checkout dev
+
+git rebase -i master
+git mergetool 
+
+à la fin du rebase on force le push
+
+git push --force
