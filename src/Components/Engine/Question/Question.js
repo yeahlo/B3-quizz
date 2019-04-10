@@ -7,7 +7,7 @@ class Question extends Component {
 
         this.state = {
             answerChecked: [],
-            question: this.props.getQuestion(this.props.match.params.index);
+            question: this.props.getQuestion(this.props.match.params.index)
         }
     }
 
