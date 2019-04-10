@@ -14,6 +14,8 @@ class Generator extends Component {
         this.addQuestion = this.addQuestion.bind(this)
         this.saveQuizz = this.saveQuizz.bind(this)
         this.testQuizz = this.testQuizz.bind(this)
+
+        this.questionRef = []
     }
 
     saveTitleQuizz(event){
@@ -38,7 +40,31 @@ class Generator extends Component {
     }
 
     saveQuizz(){
-        alert('test')
+        let quizz = {};
+        quizz.title = this.state.title;
+        quizz.questions = [];
+        this.questionRef.map( (question, index) =>{
+                if(question){
+                    quizz.questions.push(question.getJson());
+                }
+            }
+        );
+        //console.log(JSON.stringify(quizz));
+
+        fetch('http://localhost:3006/api/save', {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(quizz)
+        })
+            .then(value => {
+                console.log("ok");
+            })
+            .catch(reason => {
+
+            })
     }
 
     testQuizz(){
@@ -50,8 +76,11 @@ class Generator extends Component {
     }
 
     renderQuestions(){
+
+        this.questionRef = [];
+
         const questions = this.state.questions.map( (question, index) =>
-            <Question key={index} idQuestion={question.idQuestion}/>
+            <Question ref={q => {this.questionRef.push(q)}} key={index} idQuestion={question.idQuestion}/>
         );
         return questions;
     }
