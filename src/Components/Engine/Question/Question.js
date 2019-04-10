@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './mainQuestion.scss';
 
 class Question extends Component {
     constructor() {
@@ -6,12 +7,12 @@ class Question extends Component {
 
         this.state = {
             answerChecked: [],
+            question: this.props.getQuestion(this.props.match.params.index);
         }
     }
 
     handleChange(answer) {
         let data = this.state.answerChecked.slice(0);
-        console.log(answer);
 
         if (data.includes(answer)) {
             data.forEach((item, index) => {
@@ -24,39 +25,41 @@ class Question extends Component {
             data.push(answer);
         }
         this.setState({answerChecked: data}, () => {
-            console.log('after', this.state.answerChecked);
         });
     }
 
     render() {
-        const content = <h2>this.props.contentQuestion</h2>;
+
+        const content = <h2>{this.state.question.contentQuestion}</h2>;
         // const content = <h2>TEST TITLE</h2>;
 
-        const disable = this.props.disable;
-        // const disable = false;
-        let allowOrNot = disable === true ? "disable" : "";
         // const content = <h2>{this.props.content}</h2>;
 
         // let answers = [
         //     'une frite',
-        //     'une patate'
+        //     'une patate',
+        //     'une etsts'
         // ];
-        const listAnswers = this.props.answers.map((answer, index) =>
+
+        const listAnswers = this.state.question.answers.map((answer, index) =>
             // const listAnswers = answers.map((answer, index) =>
 
-            <div key={index}>
+            <div className="anAnswer" key={index}>
+                {/*<label htmlFor="answer">{answer.contentAnswer}</label>*/}
                 <label htmlFor="answer">{answer.contentAnswer}</label>
-                {/*<label htmlFor="answer">{answer}</label>*/}
-                <input disabled={allowOrNot} id="anwser" onChange={() => this.handleChange(answer)} type="checkbox"/>
+                <input disabled={this.props.disable} id="anwser" onChange={() => this.handleChange(answer.contentAnswer)} type="checkbox"/>
             </div>
         );
         return (
             <div className="Question">
                 {content}
                 {listAnswers}
-                {/*<button disabled={allowOrNot} onClick={() => console.log("test")}>save</button>*/}
-                <button disabled={allowOrNot} onClick={() => this.props.validate(this.state.answerChecked)}>Save
-                </button>
+                <div className="save">
+                    {/*<button disabled={this.props.disable} onClick={() => console.log("test")}>save</button>*/}
+
+                    <button disabled={this.props.disable} onClick={() => this.props.validate(this.state.answerChecked)}>Save
+                    </button>
+                </div>
             </div>
         );
     }

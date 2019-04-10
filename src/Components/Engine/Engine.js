@@ -6,16 +6,18 @@ class Engine extends Component {
     constructor() {
         super();
 
-        this.state = {
-            score: 22222222222,
-        }
+        // this.state = {
+        //     disable: false,
+        //     score: 22222222222,
+        // }
     }
 
     render() {
         return (
             <div className="">
-                <Question disable={this.state.disable} answers={this.state.answers} validate={() => this.state.validate(answerChecked)}/>
-                <EndQuizz score={this.state.score} />
+                <Question disable={this.state.disable} answers={this.state.answers}
+                          validate={() => this.state.validate(answerChecked)}/>
+                <EndQuizz score={this.state.score}/>
             </div>
 
         );
