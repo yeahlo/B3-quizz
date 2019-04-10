@@ -3,6 +3,22 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <ul>
+                        <li><Link to={'/generator/'}>Generator</Link></li>
+                        <li><Link to={'/engine/'}>Engine</Link></li>
+                    </ul>
+                </div>
+
+                <Route path={'/'} exact component={Home}/>
+                <Route path='/generator/' component={Generator}/>
+                <Route path='/engine/' component={Engine}/>
+            </Router>
+        );
+    }
 
     componentDidMount() {
         /*
