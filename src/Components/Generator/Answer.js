@@ -9,8 +9,7 @@ class Answer extends Component {
             contentAnswer: "",
             isCorrect: false,
         };
-        this.handleChecked = this.handleChecked.bind(this);
-        this.addContent = this.addContent.bind(this);
+
     }
 
     handleChecked(e) {

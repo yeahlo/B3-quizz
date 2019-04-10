@@ -6,7 +6,6 @@ class Question extends Component {
 
     constructor() {
         super();
-        this.addAnswer = this.addAnswer.bind(this);
 
         this.state = {
 
@@ -33,7 +32,7 @@ class Question extends Component {
                 <div className={"container-questions"}>
                     {this.renderAnswer()}
                 </div>
-                <button onClick={this.addAnswer}>Add Answer</button>
+                <button onClick={() => this.addAnswer()}>Add Answer</button>
             </div>
         );
     }
