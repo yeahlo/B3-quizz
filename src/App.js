@@ -19,7 +19,7 @@ class App extends Component {
 
                 <Route path={'/'} exact component={Home}/>
                 <Route path='/generator/' component={Generator}/>
-                <Route path='/engine/:id?/:index?' component={Engine}/>
+                <Route path='/engine/' component={Engine}/>
             </Router>
         );
     }

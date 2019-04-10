@@ -89,15 +89,22 @@ class Engine extends Component {
         this.props.history.push('/engine/' + this.props.match.params.id + "/" + next);
     }
 
+    getQuestion(index){
+        return this.json.questions[index];
+    }
+
     render() {
         return (
             <div className="">
                 <h1>{this.json.title}</h1>
 
-                <Route exact path={`${this.props.match.url}/:id`} component={Begin}/>
+                <Link to={`${this.props.location.pathname}/0`}>
+                    <Route path={`${this.props.match.url}/:id`} exact component={Begin}/>
+                </Link>
 
-                {this.props.match.params.index === undefined && <Begin/>}
-                <Route path={`${this.props.match.url}/:id/:index`} component={Home} />
+                <Route path={`${this.props.match.url}/:id/:index`} exact component={Home}/>
+
+
 
                 {this.state.currentQuestion !== undefined && this.state.currentQuestion !== this.json.questions.length &&
                     <button onClick={() => this.next()}>
