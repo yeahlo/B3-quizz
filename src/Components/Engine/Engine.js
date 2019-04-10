@@ -60,7 +60,7 @@ class Engine extends Component {
         newAnswers[index] = answers;
         this.setState({
             answers: newAnswers
-        });
+        }, () => { console.log(this.state); });
 
         if(this.state.answers.length === this.json.questions.length){
             this.setState({
@@ -110,7 +110,6 @@ class Engine extends Component {
     }
 
     render() {
-        console.log(this.state.currentQuestion);
         return (
             <div className="">
                 <h1>{this.json.title}</h1>
