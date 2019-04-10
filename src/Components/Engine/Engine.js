@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// import Question from './Question/Question';
 import Begin from './Begin/Begin';
 import { Route, Link } from 'react-router-dom';
 import './engine.css';
-import Home from "../Home/Home";
+import Question from './Question/Question';
 
 class Engine extends Component {
 
@@ -28,6 +27,23 @@ class Engine extends Component {
                             correct: false
                         }
                     ]
+                },
+                {
+                    contentQuestion: "1+2 ?",
+                    answers: [
+                        {
+                            contentAnswer: "1",
+                            correct: false
+                        },
+                        {
+                            contentAnswer: "2",
+                            correct: true
+                        },
+                        {
+                            contentAnswer: "3",
+                            correct: false
+                        }
+                    ]
                 }
             ]
         };
@@ -35,13 +51,13 @@ class Engine extends Component {
         this.state = {
             answers: [],
             finish: false,
-            currentQuestion: this.props.match.params.index
+            currentQuestion: undefined
         }
     }
 
-    validate(answers){
+    validate(answers, index){
         let newAnswers = this.state.answers.slice(0);
-        newAnswers[this.props.match.index] = answers;
+        newAnswers[index] = answers;
         this.setState({
             answers: newAnswers
         });
@@ -94,6 +110,7 @@ class Engine extends Component {
     }
 
     render() {
+        console.log(this.state.currentQuestion);
         return (
             <div className="">
                 <h1>{this.json.title}</h1>
@@ -102,8 +119,9 @@ class Engine extends Component {
                     <Route path={`${this.props.match.url}/:id`} exact component={Begin}/>
                 </Link>
 
-                <Route path={`${this.props.match.url}/:id/:index`} exact component={Home}/>
-
+                <Route path={`${this.props.match.url}/:id/:index`} exact
+                       render={props => <Question {...props} getQuestion={this.getQuestion.bind(this)} disable={false} validate={this.validate.bind(this)}/>}
+                />
 
 
                 {this.state.currentQuestion !== undefined && this.state.currentQuestion !== this.json.questions.length &&
