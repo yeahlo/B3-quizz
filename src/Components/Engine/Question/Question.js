@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import './mainQuestion.scss';
 
 class Question extends Component {
-    constructor() {
-        super();
-
+    constructor(props) {
+        super(props);
         this.state = {
             answerChecked: [],
             question: this.props.getQuestion(this.props.match.params.index)
@@ -57,7 +56,7 @@ class Question extends Component {
                 <div className="save">
                     {/*<button disabled={this.props.disable} onClick={() => console.log("test")}>save</button>*/}
 
-                    <button disabled={this.props.disable} onClick={() => this.props.validate(this.state.answerChecked)}>Save
+                    <button disabled={this.props.disable} onClick={() => this.props.validate(this.state.answerChecked, this.props.match.params.index)}>Save
                     </button>
                 </div>
             </div>
