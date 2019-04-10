@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './generator.css';
 
 import Question from "./Question"
 
@@ -87,14 +88,14 @@ class Generator extends Component {
 
     render() {
         return (
-            <div className="container">
-                <input type={"text"} placeholder={"Titre du quizz"} value={this.state.title} onChange={this.saveTitleQuizz}/>
+            <div className="container-quizz">
+                <input className={"titleQuizz"} type={"text"} placeholder={"Titre du quizz"} value={this.state.title} onChange={this.saveTitleQuizz}/>
                 <div className={"questions-container"}>
                     { this.renderQuestions() }
                 </div>
-                <button onClick={this.addQuestion}>Ajouter une question</button>
-                <button onClick={this.saveQuizz}>Sauvegarder</button>
-                <button onClick={this.testQuizz}>Tester</button>
+                <button className={"btn-question"} onClick={this.addQuestion}>Ajouter une question</button>
+                <button className={"btn-question"} onClick={this.saveQuizz}>Sauvegarder</button>
+                <button className={"btn-question"} onClick={this.testQuizz}>Tester</button>
             </div>
         );
     }
