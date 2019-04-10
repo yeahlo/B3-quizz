@@ -14,7 +14,7 @@ class Engine extends Component {
     render() {
         return (
             <div className="">
-                <Question disable={this.state.disable} answers={this.state.answers} validate={this.state.validate(answerChecked)}/>
+                <Question disable={this.state.disable} answers={this.state.answers} validate={() => this.state.validate(answerChecked)}/>
                 <EndQuizz score={this.state.score} />
             </div>
 
