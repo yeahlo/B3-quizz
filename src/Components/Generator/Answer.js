@@ -20,10 +20,15 @@ class Answer extends Component {
         this.setState({contentAnswer : e.target.value})
     }
 
+    getJson(){
+        let jsonAnswer = {};
+        jsonAnswer.contentAnswer = this.state.contentAnswer;
+        jsonAnswer.isCorrect = this.state.isCorrect;
+        return jsonAnswer;
+    }
+
 
     render() {
-
-console.log(this.state);
         return (
 
             <div className="answer">
