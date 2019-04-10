@@ -1,0 +1,19 @@
+.Question {
+  text-align: center;
+
+  label {
+    display: block;
+    font-size: 25px;
+  }
+
+  .anAnswer{
+    display: inline-block;
+    padding: 0 50px;
+  }
+
+  .save {
+    display: block;
+    text-align: center;
+    padding-top: 50px;
+  }
+}
